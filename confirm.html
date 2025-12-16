@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <link rel="stylesheet" href="styled.css">  <!-- Use same CSS -->
+    <!-- <style>
+        /* Extra style only for confirmation page */
+        .confirm-box {
+            max-width: 650px;
+            margin: 60px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .confirm-box h1 {
+            margin-bottom: 20px;
+        }
+        .details p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+        .btn-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 6px;
+            background: orange;
+            color: white;
+        }
+    </style> -->
+</head>
+<body>
+
+    <div class="confirm-box">
+        <h1>Booking Confirmed 🎉</h1>
+        <p id="mainMessage"></p>
+
+        <div class="details">
+            <p><strong>Name:</strong> <span id="name"></span></p>
+            <p><strong>Mobile:</strong> <span id="phone"></span></p>
+            <p><strong>Room Type:</strong> <span id="roomType"></span></p>
+            <p><strong>Guests:</strong> <span id="guests"></span></p>
+            <p><strong>Check-in:</strong> <span id="checkin"></span></p>
+            <p><strong>Check-out:</strong> <span id="checkout"></span></p>
+        </div>
+
+        <a href="index.html" class="btn-home">Back to Homepage</a>
+    </div>
+
+    <!-- 🔥 SCRIPT TO READ URL DATA -->
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        const fullName = params.get('fullname') || 'Guest';
+        const phone = params.get('phone') || 'Not provided';
+        const roomType = params.get('room-type') || 'Room';
+        const guests = params.get('guests') || 'N/A';
+        const checkin = params.get('checkin') || '-';
+        const checkout = params.get('checkout') || '-';
+
+        // Display sentence
+        const mainMessage = `${roomType} room has been booked by ${fullName} and family (${guests}) from ${checkin} to ${checkout}.`;
+
+        document.getElementById('mainMessage').textContent = mainMessage;
+        document.getElementById('name').textContent = fullName;
+        document.getElementById('phone').textContent = phone;
+        document.getElementById('roomType').textContent = roomType;
+        document.getElementById('guests').textContent = guests;
+        document.getElementById('checkin').textContent = checkin;
+        document.getElementById('checkout').textContent = checkout;
+    </script>
+</body>
+</html>
